@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Event, EventType, Location } from '../types';
 import { Button } from "@/components/ui/button";

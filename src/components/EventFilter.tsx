@@ -34,11 +34,11 @@ const EventFilter: React.FC<EventFilterProps> = ({
   };
 
   const handleCollegeChange = (value: string) => {
-    onFilterChange({ college: value });
+    onFilterChange({ college: value === "all" ? "" : value });
   };
 
   const handleLocationChange = (value: string) => {
-    onFilterChange({ location: value });
+    onFilterChange({ location: value === "all" ? "" : value });
   };
 
   return (
@@ -72,14 +72,14 @@ const EventFilter: React.FC<EventFilterProps> = ({
         </Select>
 
         <Select
-          value={filters.college}
+          value={filters.college || "all"}
           onValueChange={handleCollegeChange}
         >
           <SelectTrigger>
             <SelectValue placeholder="College" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Colleges</SelectItem>
+            <SelectItem value="all">All Colleges</SelectItem>
             {uniqueColleges.map((college) => (
               <SelectItem key={college} value={college}>{college}</SelectItem>
             ))}
@@ -87,14 +87,14 @@ const EventFilter: React.FC<EventFilterProps> = ({
         </Select>
 
         <Select
-          value={filters.location}
+          value={filters.location || "all"}
           onValueChange={handleLocationChange}
         >
           <SelectTrigger>
             <SelectValue placeholder="Location" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Locations</SelectItem>
+            <SelectItem value="all">All Locations</SelectItem>
             <SelectItem value="virtual">Virtual</SelectItem>
             {uniqueLocations.map((location) => (
               <SelectItem key={location} value={location}>{location}</SelectItem>
